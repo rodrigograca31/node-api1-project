@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { connect } from "react-redux";
+import { getUsers, deleteUser } from "./state/actionCreators";
+
+function App({ users, getUsers, deleteUser }) {
+	React.useEffect(() => {
+		getUsers();
+	}, []);
+
+	return (
+		<div className="App">
+			Total Users: {users.length}
+			<br />
+			<br />
+			{users.map(user => {
+				return (
+					<div className="user">
+						{user.name} - {user.bio} -{" "}
+						<div
+							onClick={e => {
+								deleteUser(user.id);
+							}}
+						>
+							🗑️
+						</div>
+						<br />
+					</div>
+				);
+			})}
+		</div>
+	);
 }
 
-export default App;
+// Step 8: Use "connect" to plug the component to redux
+// Step 9: Plug the action creators into the component
+export default connect(state => state, {
+	getUsers,
+	deleteUser
+})(App);
+
+// export default App;
