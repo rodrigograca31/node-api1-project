@@ -4,10 +4,14 @@ const cors = require("cors");
 const { find, findById, insert, remove, update } = require("./data/db");
 const app = express();
 
+require("dotenv").config();
+
 app.use(express.json());
 app.use(cors());
 
-const port = process.env.PORT || 4000;
+console.log(process.env.PORT);
+
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
 	console.log(`listening on ${port}`);
