@@ -9,12 +9,13 @@ require("dotenv").config();
 app.use(express.json());
 app.use(cors());
 
+console.log("environment");
+console.log(process.env);
 console.log(process.env.PORTTT);
+console.log(process.env.PORT);
 
-const port = process.env.PORTTT || 3000;
-
-app.listen(port, () => {
-	console.log(`listening on ${port}`);
+app.listen(3000, () => {
+	console.log(`listening on ${3000}`);
 });
 
 app.post("/api/users", (req, res) => {
