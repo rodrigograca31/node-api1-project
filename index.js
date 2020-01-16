@@ -4,16 +4,17 @@ const cors = require("cors");
 const { find, findById, insert, remove, update } = require("./data/db");
 const app = express();
 
+require("dotenv").config();
+
 app.use(express.json());
 app.use(cors());
 
-console.log("environment");
-console.log(process.env);
-console.log(process.env.PORTTT);
 console.log(process.env.PORT);
 
-app.listen(3000, () => {
-	console.log(`listening on ${3000}`);
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+	console.log(`listening on ${port}`);
 });
 
 app.post("/api/users", (req, res) => {
