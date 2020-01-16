@@ -6,6 +6,7 @@ const app = express();
 
 require("dotenv").config();
 
+app.use(express.static("users/build"));
 app.use(express.json());
 app.use(cors());
 
